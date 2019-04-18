@@ -64,3 +64,6 @@ webpack.config.js
 src-gen
 lib
 dist
+
+# We build the `next` Theia
+yarn.lock
