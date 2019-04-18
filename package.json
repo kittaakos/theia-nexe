@@ -54,6 +54,7 @@
   },
   "devDependencies": {
     "@theia/cli": "next",
+    "copyfiles": "^2.1.0",
     "nexe": "^3.1.0",
     "rimraf": "^2.6.3"
   },

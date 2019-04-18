@@ -6,23 +6,40 @@
     const nexe = require('nexe')
     const path = require('path')
     const rimraf = require('rimraf')
+    const copy = require('copyfiles')
 
+    // Wipe previous state if any.
     rimraf.sync(path.resolve(__dirname, 'dist'))
-    
+
+    // Create the executable into `dist`.
+    const natives = [
+        'node_modules/drivelist/build/Release/drivelist.node',
+        'node_modules/find-git-repositories/build/Release/findGitRepos.node',
+        'node_modules/nsfw/build/Release/nsfw.node',
+        'node_modules/@theia/node-pty/build/Release/pty.node',
+        'node_modules/fsevents/lib/binding/Release/**/*'
+    ]
     const output = path.resolve(__dirname, 'dist/theia')
     await nexe.compile({
         output,
         input: path.resolve(__dirname, 'src-gen/backend/main.js'),
-        loglevel: process.argv.indexOf('--debug') !== -1 ? 'verbose' : 'info',
+        loglevel: 'verbose',
         resources: [
             'lib/**/*', // The frontend application.
-            'node_modules/drivelist/build/Release/drivelist.node',
-            'node_modules/find-git-repositories/build/Release/findGitRepos.node',
-            'node_modules/nsfw/build/Release/nsfw.node',
-            'node_modules/@theia/node-pty/build/Release/pty.node',
-            'node_modules/fsevents/lib/binding/Release/**/*'
-        ],
+            ...natives
+        ]
+    })
+
+    // Move the natives next to the executable.
+    // XXX: Is there a better approach?
+    copy([...natives, path.resolve(__dirname, 'dist')], {
+        all: true,
         verbose: true
+    }, error => {
+        if (error) {
+            console.error(error)
+            process.exit(1)
+        }
     })
 
 })()
