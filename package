@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+// @ts-check
+
+(async () => {
+
+    const nexe = require('nexe')
+    const path = require('path')
+    const rimraf = require('rimraf')
+
+    rimraf.sync(path.resolve(__dirname, 'dist'))
+    
+    const output = path.resolve(__dirname, 'dist/theia')
+    await nexe.compile({
+        output,
+        input: path.resolve(__dirname, 'src-gen/backend/main.js'),
+        loglevel: process.argv.indexOf('--debug') !== -1 ? 'verbose' : 'info',
+        resources: [
+            'lib/**/*',
+            'node_modules/**/*.node'
+        ]
+    })
+
+})()
