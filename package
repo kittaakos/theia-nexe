@@ -15,9 +15,14 @@
         input: path.resolve(__dirname, 'src-gen/backend/main.js'),
         loglevel: process.argv.indexOf('--debug') !== -1 ? 'verbose' : 'info',
         resources: [
-            'lib/**/*',
-            'node_modules/**/*.node'
-        ]
+            'lib/**/*', // The frontend application.
+            'node_modules/drivelist/build/Release/drivelist.node',
+            'node_modules/find-git-repositories/build/Release/findGitRepos.node',
+            'node_modules/nsfw/build/Release/nsfw.node',
+            'node_modules/@theia/node-pty/build/Release/pty.node',
+            'node_modules/fsevents/lib/binding/Release/**/*'
+        ],
+        verbose: true
     })
 
 })()
