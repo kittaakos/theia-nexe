@@ -18,7 +18,8 @@ yarn build
 ```
 
 # Package
-Your executable will be under the `dist` folder.
+Your executable will be under the `dist` folder. Do **not** move the executable only, you should move the entire `dist` folder instead.
+It [seems](https://github.com/nexe/nexe/issues/525#issuecomment-422963155), this is a limitation, but has to be verified though.
 ```
 yarn package
 ```

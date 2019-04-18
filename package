@@ -6,7 +6,7 @@
     const nexe = require('nexe')
     const path = require('path')
     const rimraf = require('rimraf')
-    const copy = require('copyfiles')
+    const copyfiles = require('copyfiles');
 
     // Wipe previous state if any.
     rimraf.sync(path.resolve(__dirname, 'dist'))
@@ -17,8 +17,10 @@
         'node_modules/find-git-repositories/build/Release/findGitRepos.node',
         'node_modules/nsfw/build/Release/nsfw.node',
         'node_modules/@theia/node-pty/build/Release/pty.node',
-        'node_modules/fsevents/lib/binding/Release/**/*'
+        'node_modules/fsevents/lib/binding/Release/',
+        'node_modules/@theia/typescript/lib/node/startserver.js' // https://github.com/theia-ide/theia/pull/4954
     ]
+
     const output = path.resolve(__dirname, 'dist/theia')
     await nexe.compile({
         output,
@@ -32,14 +34,21 @@
 
     // Move the natives next to the executable.
     // XXX: Is there a better approach?
-    copy([...natives, path.resolve(__dirname, 'dist')], {
-        all: true,
-        verbose: true
-    }, error => {
-        if (error) {
-            console.error(error)
-            process.exit(1)
-        }
-    })
+    copy([...natives, path.resolve(__dirname, 'dist')])
+
+    /**
+     * The last item is the destination path. Consumes `glob`.
+     */
+    function copy(paths) {
+        copyfiles(paths, {
+            all: true,
+            verbose: true
+        }, error => {
+            if (error) {
+                console.error(error)
+                process.exit(1)
+            }
+        })
+    }
 
 })()
