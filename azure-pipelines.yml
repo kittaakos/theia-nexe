@@ -37,10 +37,7 @@ jobs:
     displayName: Build - Theia Application
   - script: yarn build
     displayName: Bundle - Theia Binary
-  - bash: |
-    cd ./dist/
-    mkdir ./bin/
-    zip -r -9 ./bin/theia-$(Agent.OS)-bin.zip ./node_modules/ ./theia
+  - bash: cd ./dist/ && mkdir ./bin/ && zip -r -9 ./bin/theia-$(Agent.OS)-bin.zip ./node_modules/ ./theia
     displayName: 'Archive Files'
   - task: PublishBuildArtifacts@1
     inputs:
