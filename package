@@ -6,7 +6,7 @@
     const nexe = require('nexe')
     const path = require('path')
     const rimraf = require('rimraf')
-    const copyfiles = require('copyfiles');
+    const copyfiles = require('copyfiles')
 
     // Wipe previous state if any.
     rimraf.sync(path.resolve(__dirname, 'dist'))
