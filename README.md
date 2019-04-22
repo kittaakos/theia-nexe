@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/kittaakos/theia-sandbox/_apis/build/status/kittaakos.theia-nexe?branchName=master)](https://dev.azure.com/kittaakos/theia-sandbox/_build/latest?definitionId=5&branchName=master)
+
 # theia-pkg
 This is a POC to bundle Theia into one single executable with [`nexe`](https://github.com/nexe/nexe).
 See: https://github.com/theia-ide/theia/issues/4541
