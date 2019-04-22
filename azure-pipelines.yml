@@ -8,7 +8,7 @@ pr:
 - master
 
 jobs:
-- job: Theia-binary
+- job: TheiaBinary
   strategy:
     matrix:
       linux:
@@ -40,10 +40,10 @@ jobs:
   - task: ArchiveFiles@1
     inputs:
       rootFolderOrFile: './dist/'
-      archiveFile: '.dist/theia-bin-$(Agent.OS).zip'
+      archiveFile: '.dist/$(Agent.OS)/theia-bin-$(Agent.OS).zip'
     displayName: 'Archive Files'
   - task: PublishBuildArtifacts@1
     inputs:
-      pathtoPublish: ./dist/*.zip
+      pathtoPublish: ./dist/$(Agent.OS)/
       artifactName: 'Theia Binary'
     displayName: 'Publish - Theia Binary'
