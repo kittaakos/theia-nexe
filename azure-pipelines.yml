@@ -35,8 +35,8 @@ jobs:
       GITHUB_TOKEN: $(Personal.GitHub.Token)
   - script: yarn build
     displayName: Build - Theia Application
-  - script: yarn bundle
-    displayName: Bundle - Theia Binary
+  - script: yarn package
+    displayName: Package - Theia Binary
   - bash: cd ./dist/ && mkdir ./bin/ && zip -r -9 ./bin/theia-$(Agent.OS)-bin.zip ./node_modules/ ./theia
     displayName: 'Archive - Theia Application'
   - task: PublishBuildArtifacts@1
