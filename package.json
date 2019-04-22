@@ -20,7 +20,7 @@
   "homepage": "https://github.com/kittaakos/theia-pkg#readme",
   "scripts": {
     "build": "theia build",
-    "package": "./package"
+    "package": "node ./package"
   },
   "dependencies": {
     "@theia/callhierarchy": "next",
