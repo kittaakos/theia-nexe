@@ -1,0 +1,46 @@
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+
+pr:
+- master
+
+jobs:
+- job: Theia-binary
+  strategy:
+    matrix:
+      linux:
+        imageName: 'ubuntu-16.04'
+      mac:
+        imageName: 'macos-10.13'
+      windows:
+        imageName: 'vs2017-win2016'
+  pool:
+    vmImage: $(imageName)
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '2.7'
+      architecture: 'x64'
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '10.x'
+  - script: yarn
+    displayName: Install Dependencies
+    env:
+      GITHUB_TOKEN: $(Personal.GitHub.Token)
+  - script: yarn build
+    displayName: Build - Theia Application
+  - script: yarn build
+    displayName: Bundle - Theia Binary
+  - task: ArchiveFiles@1
+  inputs:
+      rootFolderOrFile: './dist/'
+      archiveFile: '.dist/theia-bin-$(Agent.OS).zip'
+  - task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: ./dist/*.zip
+    artifactName: 'Theia Binary'
+  displayName: 'Publish - Theia Binary'
