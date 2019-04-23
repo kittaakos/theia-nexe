@@ -8,7 +8,7 @@ pr:
 - master
 
 jobs:
-- job: TheiaBinary
+- job: Build
   strategy:
     matrix:
       linux:
@@ -34,13 +34,13 @@ jobs:
     env:
       GITHUB_TOKEN: $(Personal.GitHub.Token)
   - script: yarn build
-    displayName: Build - Theia Application
+    displayName: Build - Theia Binary
   - script: yarn package
     displayName: Package - Theia Binary
   - bash: cd ./dist/ && mkdir ./bin/ && zip -r -9 ./bin/theia-$(Agent.OS)-bin.zip ./node_modules/ ./theia
-    displayName: 'Archive - Theia Application'
+    displayName: 'Archive - Theia Binary'
   - task: PublishBuildArtifacts@1
     inputs:
       pathtoPublish: ./dist/bin/
-      artifactName: 'Theia Binary'
+      artifactName: 'Theia Binary - $(Agent.OS)'
     displayName: 'Publish - Theia Binary'
