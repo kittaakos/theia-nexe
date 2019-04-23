@@ -2,7 +2,7 @@ tasks:
   - init: >
       yarn &&
       yarn build &&
-      yarn package
+      yarn package &&
       ./dist/theia
 github:
   prebuilds:
