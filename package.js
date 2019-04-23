@@ -16,7 +16,8 @@
         'node_modules/find-git-repositories/build/Release/findGitRepos.node',
         'node_modules/nsfw/build/Release/nsfw.node',
         'node_modules/@theia/node-pty/build/Release/pty.node',
-        'node_modules/fsevents/lib/binding/Release/',
+        'node_modules/fsevents/lib/binding/Release/**',
+        'node_modules/vscode-ripgrep/bin/**',
         'node_modules/@theia/typescript/lib/node/startserver.js' // https://github.com/theia-ide/theia/pull/4954
     ]
 
