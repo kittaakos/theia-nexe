@@ -53,10 +53,21 @@
     "typescript": "latest"
   },
   "devDependencies": {
+    "@coder/nbin": "^1.1.2",
     "@theia/cli": "next",
     "copyfiles": "^2.1.0",
     "nexe": "^3.1.0",
-    "rimraf": "^2.6.3"
+    "rimraf": "^2.6.3",
+    "happypack": "^5.0.1",
+    "terser-webpack-plugin": "^1.2.3",
+    "webpack-merge": "^4.2.1",
+    "cache-loader": "^3.0.0",
+    "ts-loader": "^5.4.3",
+    "string-replace-loader": "^2.1.1",
+    "node-loader": "^0.6.0",
+    "node-ssh": "^6.0.0",
+    "webpack-node-externals": "^1.7.2"
+
   },
   "engines": {
     "node": ">=10.2.0"
