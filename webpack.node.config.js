@@ -12,7 +12,6 @@ module.exports = (options = {}) => merge(
 		"@theia/node-pty": "commonjs @theia/node-pty",
 		'drivelist': 'commonjs drivelist',
 		'find-git-repositories' : 'commonjs find-git-repositories',
-		'nsfw': 'commonjs nsfw',
-		'formidable': 'commonjs formidable'
+		'nsfw': 'commonjs nsfw'
 	}
 });

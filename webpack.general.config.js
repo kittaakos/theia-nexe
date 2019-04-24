@@ -54,7 +54,11 @@ module.exports = (options = {}) => ({
 		}, {
 			test: /\.wasm$/,
 			type: "javascript/auto",
-		}],
+		}, {
+			test: /\ipc-bootstrap\.js$/,
+			use: { loader: 'webpack-fork-loader' }
+		  }],
+		noParse: /\/node-require.js$/,
 	},
 	resolve: {
 		alias: {
@@ -96,6 +100,7 @@ module.exports = (options = {}) => ({
 			"process.env.LOG_LEVEL": `"${process.env.LOG_LEVEL || ""}"`,
 			"process.env.SERVICE_URL": `"${process.env.SERVICE_URL || ""}"`,
 			"process.env.VERSION": `"${process.env.VERSION || ""}"`,
+			"global.GENTLY": false 
 		}),
 	],
 	// optimization: {

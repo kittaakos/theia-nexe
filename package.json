@@ -20,7 +20,9 @@
   "homepage": "https://github.com/kittaakos/theia-pkg#readme",
   "scripts": {
     "build": "theia build",
-    "package": "node ./package"
+    "package": "node ./package",
+    "webpack": "./node_modules/.bin/webpack --config ./webpack.nbin.config.js --mode=development && mv ./out/cli.js ./src-gen/backend/cli.js",
+    "start:backend": "node ./src-gen/backend/cli.js"
   },
   "dependencies": {
     "@theia/callhierarchy": "next",
@@ -66,7 +68,8 @@
     "string-replace-loader": "^2.1.1",
     "node-loader": "^0.6.0",
     "node-ssh": "^6.0.0",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+    "webpack-fork-loader": "^1.0.1"
 
   },
   "engines": {

@@ -67,3 +67,5 @@ dist
 
 # We build the `next` Theia
 yarn.lock
+# TODO: remove this
+out.js
